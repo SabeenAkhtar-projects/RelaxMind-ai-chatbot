@@ -1,0 +1,168 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --teal-50: #f0fdfa;
+    --teal-100: #ccfbf1;
+    --teal-200: #99f6e4;
+    --teal-500: #14b8a6;
+    --teal-600: #0d9488;
+    --teal-700: #0f766e;
+    --emerald-500: #10b981;
+    --emerald-600: #059669;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: #f0fdfa;
+  }
+
+  /* Urdu/RTL font support */
+  .urdu-text, .font-urdu {
+    font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', 'Urdu Typesetting', serif;
+    line-height: 2;
+    direction: rtl;
+    text-align: right;
+  }
+
+  .rtl {
+    direction: rtl;
+    text-align: right;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #0d9488;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0f766e;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-teal-600 hover:bg-teal-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 shadow-md hover:shadow-lg active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply bg-white hover:bg-teal-50 text-teal-700 font-semibold py-3 px-6 rounded-xl transition-all duration-200 border-2 border-teal-200 hover:border-teal-400;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl shadow-sm border border-teal-100 p-6;
+  }
+
+  .chat-bubble-user {
+    @apply bg-teal-600 text-white rounded-2xl rounded-tr-sm px-4 py-3 max-w-xs lg:max-w-md;
+  }
+
+  .chat-bubble-assistant {
+    @apply bg-white text-slate-800 rounded-2xl rounded-tl-sm px-4 py-3 max-w-xs lg:max-w-md shadow-sm border border-teal-100;
+  }
+
+  .mood-btn {
+    @apply w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-150 cursor-pointer border-2;
+  }
+
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-sm rounded-2xl border border-white/60 shadow-lg;
+  }
+}
+
+/* Breathing animation */
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.4); opacity: 1; }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+.breathe-circle {
+  animation: breathe 8s ease-in-out infinite;
+}
+
+.pulse-ring {
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+/* Message animation */
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.msg-in { animation: slideInLeft 0.3s ease-out; }
+.msg-out { animation: slideInRight 0.3s ease-out; }
+
+/* Typing indicator */
+@keyframes bounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-8px); }
+}
+
+.typing-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #0d9488;
+  animation: bounce 1.2s ease-in-out infinite;
+}
+
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #0d9488 0%, #059669 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Islamic pattern overlay */
+.pattern-bg {
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(13,148,136,0.05) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(5,150,105,0.05) 0%, transparent 50%);
+}
+
+/* Sidebar active item */
+.sidebar-item-active {
+  @apply bg-teal-600 text-white;
+}
+
+/* Focus styles */
+textarea:focus, input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(13,148,136,0.2);
+}
